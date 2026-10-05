@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>STS Event</title>
+<style>
+  body { font-family: sans-serif; margin: 48px 20px; text-align: center; color: #333; }
+  a { color: #0B3D91; }
+</style>
+</head>
+<body>
+<p id="msg">กำลังเปิดบัตรเชิญ…</p>
+<p><a id="go" hidden>แตะที่นี่ถ้าหน้าไม่เปลี่ยน</a></p>
+<noscript><p>กรุณาเปิดลิงก์นี้ด้วยเบราว์เซอร์ที่เปิดใช้ JavaScript</p></noscript>
+<script>
+  // ลิงก์สั้น https://parnusts.github.io/redirect_link/?<token> -> หน้าบัตรเชิญของ token นั้น (รับ ?t=<token> และ #<token> ด้วย ตัวพิมพ์ใหญ่ก็ได้)
+  // หน้านี้ไม่เก็บและไม่ส่งข้อมูลไปที่อื่น ทำอย่างเดียวคือพาไปที่เว็บแอปด้านล่าง
+  var TARGET = 'https://script.google.com/macros/s/AKfycbxQCgquRGc2aIetUQpLYLU7oREKHLyFWEfG6K_mj8DmXp4-eUR_B_SPfHkRdCfySprv/exec';
+  var m = /^[?#](?:t=)?([a-z0-9]{10})(?:[&#]|$)/i.exec(location.search || location.hash);
+  if (m) {
+    var url = TARGET + '?t=' + m[1].toLowerCase();
+    var go = document.getElementById('go');
+    go.href = url;
+    go.hidden = false;
+    location.replace(url);
+  } else {
+    document.getElementById('msg').textContent = 'ลิงก์ไม่ครบถ้วน กรุณาเปิดจากลิงก์หรือ QR ที่ได้รับในคำเชิญอีกครั้ง';
+  }
+</script>
+</body>
+</html>
